@@ -1,0 +1,117 @@
+# Nightly: refresh live data into the rolling release, check source
+# freshness, and run the LLM eval suite against the frozen fixture.
+name: Nightly
+
+on:
+  schedule:
+    - cron: "14 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write # keepalive re-enables this workflow via the API
+
+jobs:
+  refresh-data:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Download current data release
+        run: |
+          mkdir -p data/raw data/links
+          gh release download data-latest --dir data/raw \
+            --pattern '*.parquet' --clobber || echo "no release yet"
+          mv data/raw/tender_links.parquet data/links/ 2>/dev/null || true
+
+      - name: Incremental ingest (last 7 days, idempotent merge)
+        run: uv run python -m tender_radar.ingest --source all
+
+      - name: dbt build and source freshness
+        env:
+          DBT_PROFILES_DIR: ${{ github.workspace }}/dbt
+        run: |
+          uv run dbt deps --project-dir dbt
+          uv run dbt build --project-dir dbt
+          uv run dbt source freshness --project-dir dbt
+
+      - name: Cross-portal dedup links
+        run: uv run python -m tender_radar.dedupe
+
+      - name: Upload to rolling release
+        run: |
+          gh release view data-latest >/dev/null 2>&1 || \
+            gh release create data-latest --title "Tender data (rolling)" \
+              --notes "Nightly-refreshed parquet. See DATA_LICENSE.md for source attribution."
+          gh release upload data-latest data/raw/*.parquet data/links/tender_links.parquet --clobber
+
+      - name: Monthly dated snapshot (history insurance)
+        if: ${{ startsWith(github.event.schedule, '14') }}
+        run: |
+          if [ "$(date -u +%d)" = "01" ]; then
+            tag="data-$(date -u +%Y-%m)"
+            gh release view "$tag" >/dev/null 2>&1 || \
+              gh release create "$tag" --title "Tender data snapshot $tag" \
+                --notes "Monthly snapshot of the rolling data release." \
+                data/raw/*.parquet data/links/tender_links.parquet
+          fi
+
+  agent-evals:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Build the fixture warehouse
+        env:
+          TENDER_RADAR_DATA_DIR: ${{ github.workspace }}/fixtures
+          DBT_PROFILES_DIR: ${{ github.workspace }}/dbt
+        run: |
+          uv run dbt deps --project-dir dbt
+          uv run dbt build --project-dir dbt
+
+      - name: Run the 52-question eval suite
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          # Fork PRs and unconfigured repos have no secret: skip, don't fail.
+          if [ -z "$GEMINI_API_KEY" ]; then
+            echo "GEMINI_API_KEY not available — skipping LLM evals"
+            exit 0
+          fi
+          uv run python evals/harness.py
+
+      - name: Publish eval report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-report
+          path: evals/report.json
+          if-no-files-found: ignore
+
+  keepalive:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+      # Public-repo schedules pause after 60 days without activity; this
+      # re-enables the workflow through the API — no bot commits in history.
+      - uses: gautamkrishnar/keepalive-workflow@v2
+        with:
+          use_api: true
