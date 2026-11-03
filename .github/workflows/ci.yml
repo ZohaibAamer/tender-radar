@@ -1,0 +1,34 @@
+# Tier-1 checks: deterministic, no LLM, runs on every push and PR.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Lint
+        run: uv run ruff check .
+
+      - name: Unit and governance tests
+        run: uv run pytest
+
+      - name: dbt build against the frozen fixture
+        env:
+          TENDER_RADAR_DATA_DIR: ${{ github.workspace }}/fixtures
+          DBT_PROFILES_DIR: ${{ github.workspace }}/dbt
+        run: |
+          uv run dbt deps --project-dir dbt
+          uv run dbt build --project-dir dbt
