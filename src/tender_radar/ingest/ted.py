@@ -11,11 +11,12 @@ fall back to the first available language.
 
 from __future__ import annotations
 
+import time
 from collections.abc import Iterator
 from datetime import date, datetime
 from typing import Any
 
-from .http import request_json
+from .http import PAGE_PAUSE_SECONDS, request_json
 from .models import NoticeType, UnifiedNotice
 
 API_URL = "https://api.ted.europa.eu/v3/notices/search"
@@ -154,3 +155,4 @@ def fetch(since: date, max_pages: int = 50) -> Iterator[UnifiedNotice]:
                 yield notice
         if len(notices) < PAGE_SIZE:
             break
+        time.sleep(PAGE_PAUSE_SECONDS)

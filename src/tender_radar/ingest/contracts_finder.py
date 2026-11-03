@@ -7,11 +7,12 @@ deduplication meaningful.
 
 from __future__ import annotations
 
+import time
 from collections.abc import Iterator
 from datetime import date
 from typing import Any
 
-from .http import request_json
+from .http import PAGE_PAUSE_SECONDS, request_json
 from .models import UnifiedNotice
 from .ocds import map_ocds_release
 
@@ -45,3 +46,5 @@ def fetch(since: date, max_pages: int = 50) -> Iterator[UnifiedNotice]:
             if notice:
                 yield notice
         url = (package.get("links") or {}).get("next")
+        if url:
+            time.sleep(PAGE_PAUSE_SECONDS)
