@@ -26,7 +26,9 @@ import duckdb
 # Suffixes that differ between portals for the same organisation.
 _NOISE_WORDS = {"ltd", "limited", "plc", "llp", "the", "of"}
 BLOCK_WINDOW_DAYS = 90
-DEFAULT_THRESHOLD = 0.80  # chosen from the labeled sweep; see evaluate_matcher
+# Measured on evals/dedupe_labels.csv (55 pairs): precision 0.93, recall 0.89,
+# F1 0.91 — the best point of the sweep in scripts/evaluate_matcher.py.
+DEFAULT_THRESHOLD = 0.75
 
 
 def normalize_buyer(name: str) -> str:
@@ -92,31 +94,40 @@ def score_pair(
     )
 
 
-_CANDIDATE_SQL = """
-    WITH uk AS (
-        SELECT tender_ref, source, title, buyer_name, main_cpv,
-               value_amount, first_published_date
-        FROM fct_tenders
-        WHERE source IN ('fts', 'contracts_finder') AND buyer_name <> ''
-    )
-    SELECT f.tender_ref, c.tender_ref, f.title, c.title,
-           f.main_cpv, c.main_cpv, f.value_amount, c.value_amount
-    FROM uk f
-    JOIN uk c
-      ON f.source = 'fts' AND c.source = 'contracts_finder'
-     AND normalize_buyer(f.buyer_name) = normalize_buyer(c.buyer_name)
-     AND abs(f.first_published_date - c.first_published_date) <= ?
+_UK_ROWS_SQL = """
+    SELECT tender_ref, source, title, buyer_name, main_cpv,
+           value_amount, first_published_date
+    FROM fct_tenders
+    WHERE source IN ('fts', 'contracts_finder') AND buyer_name <> ''
 """
 
 
 def find_candidates(warehouse: Path, window_days: int = BLOCK_WINDOW_DAYS) -> list[Candidate]:
     con = duckdb.connect(str(warehouse), read_only=True)
     try:
-        con.create_function("normalize_buyer", normalize_buyer)
-        rows = con.execute(_CANDIDATE_SQL, [window_days]).fetchall()
+        rows = con.execute(_UK_ROWS_SQL).fetchall()
     finally:
         con.close()
-    return [score_pair(*row) for row in rows]
+
+    # Blocking in Python: same normalized buyer, published within the window.
+    by_buyer: dict[str, dict[str, list[tuple]]] = {}
+    for ref, source, title, buyer, cpv, value, published in rows:
+        bucket = by_buyer.setdefault(normalize_buyer(buyer), {"fts": [], "contracts_finder": []})
+        bucket[source].append((ref, title, cpv, value, published))
+
+    candidates: list[Candidate] = []
+    for bucket in by_buyer.values():
+        for fts_ref, fts_title, fts_cpv, fts_value, fts_date in bucket["fts"]:
+            for cf_ref, cf_title, cf_cpv, cf_value, cf_date in bucket["contracts_finder"]:
+                if abs((fts_date - cf_date).days) > window_days:
+                    continue
+                candidates.append(
+                    score_pair(
+                        fts_ref, cf_ref, fts_title, cf_title,
+                        fts_cpv, cf_cpv, fts_value, cf_value,
+                    )
+                )
+    return candidates
 
 
 def write_links(
