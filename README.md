@@ -147,7 +147,8 @@ tender-radar/
 ## How to run it
 
 Prerequisites: [uv](https://docs.astral.sh/uv/) (manages Python itself).
-Everything below is idempotent — rerunning is always safe.
+Everything below is idempotent — rerunning is always safe. Every step also
+has a `make` shortcut — run `make help` for the list.
 
 ### 1. Install
 

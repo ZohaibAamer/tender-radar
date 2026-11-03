@@ -1,3 +1,8 @@
-# Count dbt SQL models as source in GitHub language stats (Linguist
-# classifies SQL as "data" and excludes it by default).
+# Count this project's real source files in GitHub language stats.
+# Linguist classifies SQL and YAML as "data" and excludes them by default;
+# here the dbt models, semantic layer, eval suite, and profiles ARE source.
 dbt/**/*.sql linguist-detectable
+dbt/**/*.yml linguist-detectable
+src/tender_radar/semantic/*.yaml linguist-detectable
+evals/*.yaml linguist-detectable
+profiles/*.yaml linguist-detectable
