@@ -1,0 +1,3 @@
+# Count dbt SQL models as source in GitHub language stats (Linguist
+# classifies SQL as "data" and excludes it by default).
+dbt/**/*.sql linguist-detectable
