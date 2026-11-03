@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Per-source parquet files written by `python -m tender_radar.ingest`.
+    config:
+      # Freshness is checked nightly: a source that stops updating is a
+      # pipeline problem even when every dbt test still passes.
+      freshness:
+        warn_after: {count: 2, period: day}
+        error_after: {count: 7, period: day}
+      loaded_at_field: fetched_at
+    meta:
+      external_location: "{{ env_var('TENDER_RADAR_DATA_DIR', '../data') }}/raw/{name}.parquet"
+    tables:
+      - name: fts
+        description: UK Find a Tender (OCDS releases).
+      - name: contracts_finder
+        description: UK Contracts Finder (OCDS releases, lower-value contracts).
+      - name: ted
+        description: EU TED (eForms mapped to the unified schema).

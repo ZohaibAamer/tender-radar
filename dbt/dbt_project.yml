@@ -1,0 +1,26 @@
+name: tender_radar
+version: "1.0.0"
+profile: tender_radar
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+
+models:
+  tender_radar:
+    staging:
+      +materialized: view
+    core:
+      +materialized: table
+    marts:
+      +materialized: table
+      # Marts are the semantic layer's interface: contracts make schema
+      # changes a build failure instead of a silent downstream break.
+      +contract:
+        enforced: true
+
+seeds:
+  tender_radar:
+    cpv_divisions:
+      +column_types:
+        division: varchar
+        label: varchar
