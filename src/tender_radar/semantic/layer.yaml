@@ -1,0 +1,89 @@
+# The governed query surface. This file is the whole contract: an agent can
+# query exactly what is declared here, through query_metric, and nothing else.
+# There is no free-SQL tool anywhere in the server.
+#
+# Published to MCP clients as the resource `semantic://layer`, so agents can
+# discover metrics instead of guessing names.
+
+version: 1
+table: fct_tenders
+description: >
+  Governed metrics over unified UK (Find a Tender, Contracts Finder) and EU
+  (TED) tender notices, one row per procurement.
+
+dimensions:
+  source:
+    column: source
+    description: Originating portal (fts, contracts_finder, ted).
+  cpv_division:
+    column: cpv_division_label
+    description: Top level of the CPV taxonomy (2-digit prefix), as a label.
+  buyer:
+    column: buyer_name
+    description: Contracting authority. High-cardinality — a limit is required.
+    high_cardinality: true
+    max_limit: 50
+  country:
+    column: country
+    description: Buyer country, ISO 3166-1 alpha-2.
+  status:
+    column: status
+    description: Latest notice status as published by the source.
+  published_month:
+    expr: strftime(last_published_date, '%Y-%m')
+    description: Month of the most recent notice (YYYY-MM).
+  currency:
+    column: value_currency
+    description: >
+      Currency of the disclosed value. TED mostly publishes EUR, the UK
+      portals GBP. Value metrics refuse to run unless currency is grouped or
+      filtered — otherwise euros and pounds would be silently added together.
+  value_type:
+    column: value_type
+    description: >
+      What the disclosed amount means — estimated (pre-award), awarded, or
+      unknown. Value metrics default to estimated unless this dimension is
+      explicitly grouped or filtered, so a single framework ceiling cannot
+      wreck an average.
+
+metrics:
+  tender_count:
+    agg: count(*)
+    description: Number of distinct procurements.
+  open_tender_count:
+    agg: count(*) FILTER (WHERE deadline_date >= DATE '{today}')
+    uses_clock: true
+    description: Procurements whose submission deadline has not passed.
+  expiring_soon_count:
+    agg: >-
+      count(*) FILTER (WHERE deadline_date >= DATE '{today}'
+      AND deadline_date <= DATE '{today}' + INTERVAL ({horizon_days}) DAY)
+    uses_clock: true
+    params:
+      horizon_days: 14
+    description: Open procurements with a deadline within horizon_days.
+  total_contract_value:
+    agg: sum(value_amount)
+    value_metric: true
+    description: >
+      Sum of disclosed values. Rows with no disclosed value are excluded —
+      many notices omit it, so this is a floor, not the market size.
+  avg_contract_value:
+    agg: avg(value_amount)
+    value_metric: true
+    description: Mean disclosed value, over rows that disclose one.
+  median_contract_value:
+    agg: median(value_amount)
+    value_metric: true
+    description: >
+      Median disclosed value. Computed at query time — unlike sums, medians
+      cannot be pre-aggregated and rolled up.
+
+governance:
+  default_limit: 100
+  max_limit: 500
+  value_metrics:
+    # applied automatically unless the query groups or filters value_type
+    default_value_type: estimated
+    # value metrics must group by or filter on currency
+    require_currency: true
