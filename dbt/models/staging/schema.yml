@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_fts
+    columns: &staging_columns
+      - name: notice_id
+        tests: [not_null]
+      - name: tender_ref
+        tests: [not_null]
+      - name: title
+        tests: [not_null]
+      - name: published_date
+        tests: [not_null]
+      - name: url
+        tests: [not_null]
+      - name: value_type
+        tests:
+          - accepted_values:
+              values: [estimated, awarded, unknown]
+      - name: notice_type
+        tests:
+          - accepted_values:
+              values: [planning, tender, award]
+  - name: stg_contracts_finder
+    columns: *staging_columns
+  - name: stg_ted
+    columns: *staging_columns
