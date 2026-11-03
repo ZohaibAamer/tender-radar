@@ -30,3 +30,5 @@ logs/
 .DS_Store
 .idea/
 .vscode/
+evals/.cache/
+evals/report.json
