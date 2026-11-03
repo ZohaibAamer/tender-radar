@@ -1,0 +1,158 @@
+{
+ "notices": [
+  {
+   "description-lot": {
+    "pol": [
+     "PAKIET NR 1 Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem",
+     "PAKIET NR 2 Dostawa chemicznych środków i materiałów do utrzymania czystości i higieny"
+    ]
+   },
+   "deadline-receipt-tender-date-lot": [
+    "2026-11-13+01:00",
+    "2026-11-13+01:00"
+   ],
+   "notice-type": "cn-standard",
+   "publication-number": "756373-2026",
+   "classification-cpv": [
+    "39810000",
+    "39820000",
+    "39830000",
+    "33631600",
+    "39820000",
+    "39830000",
+    "39224300",
+    "15871000",
+    "39810000",
+    "39820000",
+    "39820000",
+    "39830000",
+    "33631600",
+    "39830000",
+    "39514200",
+    "39224300"
+   ],
+   "buyer-name": {
+    "pol": [
+     "4. Wojskowy Szpital Kliniczny z Polikliniką Samodzielny Publiczny Zakład Opieki Zdrowotnej we Wrocławiu"
+    ]
+   },
+   "publication-date": "2026-11-02+01:00",
+   "links": {
+    "xml": {
+     "MUL": "https://ted.europa.eu/en/notice/756373-2026/xml"
+    },
+    "pdf": {
+     "BUL": "https://ted.europa.eu/bg/notice/756373-2026/pdf",
+     "SPA": "https://ted.europa.eu/es/notice/756373-2026/pdf",
+     "CES": "https://ted.europa.eu/cs/notice/756373-2026/pdf",
+     "DAN": "https://ted.europa.eu/da/notice/756373-2026/pdf",
+     "DEU": "https://ted.europa.eu/de/notice/756373-2026/pdf",
+     "EST": "https://ted.europa.eu/et/notice/756373-2026/pdf",
+     "ELL": "https://ted.europa.eu/el/notice/756373-2026/pdf",
+     "ENG": "https://ted.europa.eu/en/notice/756373-2026/pdf",
+     "FRA": "https://ted.europa.eu/fr/notice/756373-2026/pdf",
+     "GLE": "https://ted.europa.eu/ga/notice/756373-2026/pdf",
+     "HRV": "https://ted.europa.eu/hr/notice/756373-2026/pdf",
+     "ITA": "https://ted.europa.eu/it/notice/756373-2026/pdf",
+     "LAV": "https://ted.europa.eu/lv/notice/756373-2026/pdf",
+     "LIT": "https://ted.europa.eu/lt/notice/756373-2026/pdf",
+     "HUN": "https://ted.europa.eu/hu/notice/756373-2026/pdf",
+     "MLT": "https://ted.europa.eu/mt/notice/756373-2026/pdf",
+     "NLD": "https://ted.europa.eu/nl/notice/756373-2026/pdf",
+     "POL": "https://ted.europa.eu/pl/notice/756373-2026/pdf",
+     "POR": "https://ted.europa.eu/pt/notice/756373-2026/pdf",
+     "RON": "https://ted.europa.eu/ro/notice/756373-2026/pdf",
+     "SLK": "https://ted.europa.eu/sk/notice/756373-2026/pdf",
+     "SLV": "https://ted.europa.eu/sl/notice/756373-2026/pdf",
+     "FIN": "https://ted.europa.eu/fi/notice/756373-2026/pdf",
+     "SWE": "https://ted.europa.eu/sv/notice/756373-2026/pdf"
+    },
+    "pdfs": {
+     "POL": "https://ted.europa.eu/pl/notice/756373-2026/pdfs"
+    },
+    "html": {
+     "BUL": "https://ted.europa.eu/bg/notice/-/detail/756373-2026",
+     "SPA": "https://ted.europa.eu/es/notice/-/detail/756373-2026",
+     "CES": "https://ted.europa.eu/cs/notice/-/detail/756373-2026",
+     "DAN": "https://ted.europa.eu/da/notice/-/detail/756373-2026",
+     "DEU": "https://ted.europa.eu/de/notice/-/detail/756373-2026",
+     "EST": "https://ted.europa.eu/et/notice/-/detail/756373-2026",
+     "ELL": "https://ted.europa.eu/el/notice/-/detail/756373-2026",
+     "ENG": "https://ted.europa.eu/en/notice/-/detail/756373-2026",
+     "FRA": "https://ted.europa.eu/fr/notice/-/detail/756373-2026",
+     "GLE": "https://ted.europa.eu/ga/notice/-/detail/756373-2026",
+     "HRV": "https://ted.europa.eu/hr/notice/-/detail/756373-2026",
+     "ITA": "https://ted.europa.eu/it/notice/-/detail/756373-2026",
+     "LAV": "https://ted.europa.eu/lv/notice/-/detail/756373-2026",
+     "LIT": "https://ted.europa.eu/lt/notice/-/detail/756373-2026",
+     "HUN": "https://ted.europa.eu/hu/notice/-/detail/756373-2026",
+     "MLT": "https://ted.europa.eu/mt/notice/-/detail/756373-2026",
+     "NLD": "https://ted.europa.eu/nl/notice/-/detail/756373-2026",
+     "POL": "https://ted.europa.eu/pl/notice/-/detail/756373-2026",
+     "POR": "https://ted.europa.eu/pt/notice/-/detail/756373-2026",
+     "RON": "https://ted.europa.eu/ro/notice/-/detail/756373-2026",
+     "SLK": "https://ted.europa.eu/sk/notice/-/detail/756373-2026",
+     "SLV": "https://ted.europa.eu/sl/notice/-/detail/756373-2026",
+     "FIN": "https://ted.europa.eu/fi/notice/-/detail/756373-2026",
+     "SWE": "https://ted.europa.eu/sv/notice/-/detail/756373-2026"
+    },
+    "htmlDirect": {
+     "BUL": "https://ted.europa.eu/bg/notice/756373-2026/html",
+     "SPA": "https://ted.europa.eu/es/notice/756373-2026/html",
+     "CES": "https://ted.europa.eu/cs/notice/756373-2026/html",
+     "DAN": "https://ted.europa.eu/da/notice/756373-2026/html",
+     "DEU": "https://ted.europa.eu/de/notice/756373-2026/html",
+     "EST": "https://ted.europa.eu/et/notice/756373-2026/html",
+     "ELL": "https://ted.europa.eu/el/notice/756373-2026/html",
+     "ENG": "https://ted.europa.eu/en/notice/756373-2026/html",
+     "FRA": "https://ted.europa.eu/fr/notice/756373-2026/html",
+     "GLE": "https://ted.europa.eu/ga/notice/756373-2026/html",
+     "HRV": "https://ted.europa.eu/hr/notice/756373-2026/html",
+     "ITA": "https://ted.europa.eu/it/notice/756373-2026/html",
+     "LAV": "https://ted.europa.eu/lv/notice/756373-2026/html",
+     "LIT": "https://ted.europa.eu/lt/notice/756373-2026/html",
+     "HUN": "https://ted.europa.eu/hu/notice/756373-2026/html",
+     "MLT": "https://ted.europa.eu/mt/notice/756373-2026/html",
+     "NLD": "https://ted.europa.eu/nl/notice/756373-2026/html",
+     "POL": "https://ted.europa.eu/pl/notice/756373-2026/html",
+     "POR": "https://ted.europa.eu/pt/notice/756373-2026/html",
+     "RON": "https://ted.europa.eu/ro/notice/756373-2026/html",
+     "SLK": "https://ted.europa.eu/sk/notice/756373-2026/html",
+     "SLV": "https://ted.europa.eu/sl/notice/756373-2026/html",
+     "FIN": "https://ted.europa.eu/fi/notice/756373-2026/html",
+     "SWE": "https://ted.europa.eu/sv/notice/756373-2026/html"
+    }
+   },
+   "notice-title": {
+    "hun": "Lengyelország – Illatosított készítmények és viaszok – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "lav": "Polija – Smaržīgie preparāti un vaski – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "swe": "Polen – Doftprodukter och vaxer – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "gle": "An Pholainn – Odoriferous preparations and waxes – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "ell": "Πολωνία – Ευώδη παρασκευάσματα και κηροί – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "spa": "Polonia – Preparaciones odoríferas y ceras – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "est": "Poola – Lõhnastamisvahendid ja -vahad – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "nld": "Polen – Reukstoffen en was – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "fin": "Puola – Hajusteet ja vahat – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "pol": "Polska – Preparaty i woski wonne – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "hrv": "Poljska – Miomirisni pripravci i voskovi – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "ces": "Polsko – Vonné přípravky a vosky – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "dan": "Polen – Duftpræparater og voks – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "ron": "Polonia – Preparate odorifere şi ceară – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "por": "Polónia – Preparações odoríferas e ceras – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "slk": "Poľsko – Vonné látky a vosky – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "fra": "Pologne – Préparations odoriférantes et cires – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "mlt": "Il-Polonja – Preparazzjonijiet odorifiċi u xamgħat – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "deu": "Polen – Duftstoffe und Wachse – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "lit": "Lenkija – Gaivikliai ir vaškai – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "ita": "Polonia – Preparati odoriferi e cere – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "bul": "Полша – Препарати за ароматизиране и восъчни препарати – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "slv": "Poljska – Dišeči preparati in voski – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026",
+    "eng": "Poland – Odoriferous preparations and waxes – Dostawa chemicznych środków czyszczących i myjąco-dezynfekujących, w postaci koncentratów dozowanych przez specjalistyczne dozowniki wraz z ich najmem oraz chemicznych środków i materiałów do utrzymania czystości i higieny w latach 2024-2026"
+   },
+   "buyer-country": [
+    "POL"
+   ]
+  }
+ ],
+ "totalNoticeCount": 1
+}

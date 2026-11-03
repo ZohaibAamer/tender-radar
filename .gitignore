@@ -11,7 +11,7 @@ build/
 .env.*
 
 # Data (lives in GitHub Release assets, not the repo — except committed fixtures/)
-data/
+/data/
 *.duckdb
 *.duckdb.wal
 

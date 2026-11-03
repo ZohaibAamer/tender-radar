@@ -1,0 +1,189 @@
+{
+ "uri": "https://www.find-tender.service.gov.uk/api/1.0/ocdsReleasePackages?limit=2&updatedTo=2026-11-03T17:30:43",
+ "version": "1.1",
+ "extensions": [
+  "https://standard.open-contracting.org/profiles/eu/latest/en/extension.json",
+  "https://raw.githubusercontent.com/open-contracting-extensions/ocds_amendment_rationale_classifications_extension/master/extension.json",
+  "https://raw.githubusercontent.com/open-contracting-extensions/ocds_budget_breakdown_extension/master/extension.json",
+  "https://raw.githubusercontent.com/open-contracting-extensions/ocds_contract_completion_extension/master/extension.json",
+  "https://raw.githubusercontent.com/open-contracting-extensions/ocds_documentation_extension/master/extension.json",
+  "https://raw.githubusercontent.com/open-contracting-extensions/ocds_pagination_extension/master/extension.json",
+  "https://raw.githubusercontent.com/open-contracting-extensions/ocds_suitability_extension/master/extension.json",
+  "https://raw.githubusercontent.com/portaledcahn/ocds_Links_extension/main/extension.json",
+  "https://raw.githubusercontent.com/cabinetoffice/ocds_uk_extension/main/extension.json",
+  "https://raw.githubusercontent.com/open-contracting-extensions/ocds_performance_failures_extension/master/extension.json"
+ ],
+ "publishedDate": "2026-11-03T17:27:41Z",
+ "publisher": {
+  "name": "Cabinet Office",
+  "scheme": "GB-GOR",
+  "uid": "D2",
+  "uri": "https://www.gov.uk/government/organisations/cabinet-office"
+ },
+ "license": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+ "publicationPolicy": "https://www.gov.uk/government/publications/open-contracting",
+ "releases": [
+  {
+   "ocid": "ocds-h6vhtk-079716",
+   "buyerID": [],
+   "id": "104435-2026",
+   "tag": [
+    "award",
+    "contract"
+   ],
+   "date": "2026-11-03T17:27:41Z",
+   "initiationType": "tender",
+   "parties": [
+    {
+     "name": "Coventry University",
+     "id": "GB-PPON-PMMH-2339-NMGH",
+     "identifier": {
+      "scheme": "GB-PPON",
+      "id": "PMMH-2339-NMGH"
+     },
+     "address": {
+      "streetAddress": "Priory Street",
+      "locality": "Coventry",
+      "postalCode": "CV1 5FB",
+      "country": "GB",
+      "countryName": "United Kingdom",
+      "region": "UKG33"
+     },
+     "contactPoint": {
+      "email": "Procurement@coventry.ac.uk"
+     },
+     "roles": [
+      "buyer"
+     ],
+     "details": {
+      "url": "http://www.coventry.ac.uk",
+      "classifications": [
+       {
+        "scheme": "UK_CA_TYPE",
+        "id": "publicAuthoritySubCentralGovernment",
+        "description": "Public authority - sub-central government"
+       }
+      ]
+     }
+    },
+    {
+     "name": "Simitive Limited",
+     "id": "GB-PPON-PZTG-8186-XPYY",
+     "identifier": {
+      "scheme": "GB-PPON",
+      "id": "PZTG-8186-XPYY"
+     },
+     "address": {
+      "streetAddress": "Newmister House, 27-29 Baldwin Street",
+      "locality": "Bristol",
+      "postalCode": "BS1 1LT",
+      "country": "GB",
+      "countryName": "United Kingdom",
+      "region": "UKK11"
+     },
+     "contactPoint": {
+      "email": "accounts@simitive.com"
+     },
+     "roles": [
+      "supplier"
+     ],
+     "details": {
+      "scale": "large",
+      "vcse": false
+     }
+    }
+   ],
+   "buyer": {
+    "id": "GB-PPON-PMMH-2339-NMGH",
+    "name": "Coventry University"
+   },
+   "tender": {
+    "id": "PA-SC-1995-26-TH",
+    "legalBasis": {
+     "id": "2023/54",
+     "scheme": "UKPGA",
+     "uri": "https://www.legislation.gov.uk/ukpga/2023/54/contents"
+    },
+    "title": "Simitive WAMS",
+    "description": "Simitive WAMS Module (up to 2500 Users)",
+    "status": "complete",
+    "procurementMethod": "direct",
+    "procurementMethodDetails": "Below threshold - without competition",
+    "lots": [
+     {
+      "id": "1",
+      "status": "complete",
+      "description": null
+     }
+    ]
+   },
+   "awards": [
+    {
+     "id": "1",
+     "status": "active",
+     "mainProcurementCategory": "goods",
+     "suppliers": [
+      {
+       "id": "GB-PPON-PZTG-8186-XPYY",
+       "name": "Simitive Limited"
+      }
+     ],
+     "items": [
+      {
+       "id": "1",
+       "additionalClassifications": [
+        {
+         "scheme": "CPV",
+         "id": "48000000",
+         "description": "Software package and information systems"
+        }
+       ],
+       "deliveryAddresses": [
+        {
+         "region": "UK",
+         "country": "GB",
+         "countryName": "United Kingdom"
+        }
+       ],
+       "relatedLot": "1"
+      }
+     ],
+     "relatedLots": [
+      "1"
+     ]
+    }
+   ],
+   "contracts": [
+    {
+     "id": "1",
+     "awardID": "1",
+     "status": "active",
+     "period": {
+      "startDate": "2026-11-17T00:00:00Z",
+      "endDate": "2027-11-16T23:59:59Z"
+     },
+     "value": {
+      "amountGross": 93649.62,
+      "amount": 78041.35,
+      "currency": "GBP"
+     },
+     "aboveThreshold": false,
+     "dateSigned": "2026-10-27T00:00:00Z",
+     "statusDetails": null,
+     "documents": [
+      {
+       "id": "104435-2026",
+       "documentType": "contractNotice",
+       "noticeType": "UK7",
+       "description": "Contract details notice on Find a Tender",
+       "url": "https://www.find-tender.service.gov.uk/Notice/104435-2026",
+       "datePublished": "2026-11-03T17:27:41Z",
+       "format": "text/html"
+      }
+     ]
+    }
+   ],
+   "language": "en"
+  }
+ ]
+}

@@ -1,0 +1,127 @@
+{
+ "uri": "https://www.contractsfinder.service.gov.uk/Published/Notices/OCDS/Search?limit=2&stages=tender&publishedTo=2026-11-03T17:35:29Z",
+ "version": "1.1",
+ "extensions": [
+  "https://standard.open-contracting.org/profiles/eu/master/en/extension.json",
+  "https://raw.githubusercontent.com/portaledcahn/ocds_tenderDatePublished_extension/master/extension.json",
+  "https://raw.githubusercontent.com/open-contracting-extensions/ocds_budget_breakdown_extension/master/extension.json",
+  "https://raw.githubusercontent.com/Crown-Commercial-Service/ocds_awards_datePublished_extension/main/extension.json",
+  "https://raw.githubusercontent.com/Crown-Commercial-Service/ocds_partyDetails_vcse_extension/main/extension.json",
+  "https://raw.githubusercontent.com/Crown-Commercial-Service/ocds_tender_suitability_extension/main/extension.json",
+  "https://raw.githubusercontent.com/open-contracting-extensions/ocds_pagination_extension/master/extension.json"
+ ],
+ "publishedDate": "2026-11-03T16:42:11Z",
+ "publisher": {
+  "name": "Cabinet Office",
+  "scheme": "GB-GOR",
+  "uid": "D2",
+  "uri": "https://www.gov.uk/government/organisations/cabinet-office"
+ },
+ "license": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+ "publicationPolicy": "https://www.gov.uk/government/publications/open-contracting",
+ "releases": [
+  {
+   "ocid": "ocds-b5fd17-566bb982-934c-41bf-b478-f829a67c56f0",
+   "id": "8d6ee322-4f9f-4343-af0a-9769ed660d8e-920433",
+   "language": "en",
+   "date": "2026-11-03T16:42:10Z",
+   "tag": [
+    "tender"
+   ],
+   "initiationType": "tender",
+   "tender": {
+    "id": "26-021",
+    "title": "Evaluation Scoping Studies (2 Lots)",
+    "description": "The Gambling Commission is seeking to appoint one or two suppliers to conduct two separate evaluation scoping studies under two separate lots. Both studies will contribute to the Commission's aims of increasing our capacity to evaluate new requirements and policies, using data and analytics to make gambling regulation more effective and demonstrate how our understanding of our outcomes and our approach to evaluation has improved. The recommendations and outputs from both studies will inform the Commission's future evaluation approaches and contribute to wider policy considerations.\r\n\r\nLot 1 is focused on the identification of optimum approaches for evaluating the complex topic of harm reduction approaches, including customer interaction. Lot 2 is focused on exploring how collaborative approaches and co-production can be applied to evaluation in the gambling sector.\r\n\r\nThe opportunity is hosted via the Government Commercial Agency's e-Sourcing Portal, Jaggaer, and is being sourced through the Research and Insights Dynamic Purchasing System (RM6126). Suppliers registered on this DPS can access the opportunity.\r\n\r\nFor further details regarding the Research and Insights DPS, please visit https://www.gca.gov.uk/agreements/RM6126. For further details regarding the DPS registration process, please visit https://supplierregistration.cabinetoffice.gov.uk/dps/RM6126?nav=0\r\n\r\nPlease note, the DPS is owned by the Government Commercial Agency and not the Gambling Commission. Therefore, please direct any queries regarding the DPS to the GCA Customer Service Team on info@gca.gov.uk or call on 0345 410 2222",
+    "datePublished": "2026-11-03T16:42:10Z",
+    "status": "active",
+    "classification": {
+     "scheme": "CPV",
+     "id": "73110000",
+     "description": "Research services"
+    },
+    "additionalClassifications": [
+     {
+      "scheme": "CPV",
+      "id": "73300000",
+      "description": "Design and execution of research and development"
+     },
+     {
+      "scheme": "CPV",
+      "id": "79419000",
+      "description": "Evaluation consultancy services"
+     }
+    ],
+    "items": [
+     {
+      "id": "1",
+      "deliveryAddresses": [
+       {
+        "region": "West Midlands",
+        "countryName": "United Kingdom"
+       }
+      ]
+     }
+    ],
+    "value": {
+     "amount": 50000,
+     "currency": "GBP"
+    },
+    "procurementMethod": "selective",
+    "procurementMethodDetails": "Call-off from a dynamic purchasing system",
+    "tenderPeriod": {
+     "endDate": "2026-12-03T12:00:00Z"
+    },
+    "contractPeriod": {
+     "startDate": "2027-02-17T00:00:00Z",
+     "endDate": "2027-06-16T23:59:59+01:00"
+    },
+    "suitability": {
+     "sme": true,
+     "vcse": true
+    },
+    "mainProcurementCategory": "services",
+    "documents": [
+     {
+      "id": "1",
+      "documentType": "tenderNotice",
+      "description": "Opportunity notice on Contracts Finder",
+      "url": "https://www.contractsfinder.service.gov.uk/Notice/8d6ee322-4f9f-4343-af0a-9769ed660d8e",
+      "datePublished": "2026-11-03T16:42:10Z",
+      "format": "text/html",
+      "language": "en"
+     }
+    ]
+   },
+   "parties": [
+    {
+     "id": "GB-GOR-PB169",
+     "name": "Gambling Commission",
+     "identifier": {
+      "legalName": "Gambling Commission",
+      "scheme": "GB-GOR",
+      "id": "PB169"
+     },
+     "address": {
+      "streetAddress": "Victoria Square House",
+      "locality": "BIRMINGHAM",
+      "postalCode": "B24BP",
+      "countryName": "England"
+     },
+     "contactPoint": {
+      "name": "Commercial Team",
+      "email": "procurement@gamblingcommission.gov.uk",
+      "telephone": "0752159291"
+     },
+     "roles": [
+      "buyer"
+     ]
+    }
+   ],
+   "buyer": {
+    "id": "GB-GOR-PB169",
+    "name": "Gambling Commission"
+   }
+  }
+ ]
+}
