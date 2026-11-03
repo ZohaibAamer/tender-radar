@@ -1,15 +1,30 @@
-# Nightly: refresh live data into the rolling release, check source
-# freshness, and run the LLM eval suite against the frozen fixture.
-name: Nightly
+# Data refresh and LLM evals — manual by design.
+#
+# This repo is a reference implementation, not an operated service: nothing
+# runs unattended. Trigger this workflow from the Actions tab when you want
+# fresh data or an eval run. To operate it on a schedule instead, add:
+#
+#   schedule:
+#     - cron: "14 2 * * *"
+#
+# (and consider a keepalive action — public-repo schedules pause after 60
+# days without activity).
+name: Data refresh & evals
 
 on:
-  schedule:
-    - cron: "14 2 * * *"
   workflow_dispatch:
+    inputs:
+      snapshot:
+        description: Also create a dated snapshot release
+        type: boolean
+        default: false
+      run_evals:
+        description: Run the 52-question LLM eval suite (needs GEMINI_API_KEY secret)
+        type: boolean
+        default: true
 
 permissions:
   contents: write
-  actions: write # keepalive re-enables this workflow via the API
 
 jobs:
   refresh-data:
@@ -51,22 +66,21 @@ jobs:
         run: |
           gh release view data-latest >/dev/null 2>&1 || \
             gh release create data-latest --title "Tender data (rolling)" \
-              --notes "Nightly-refreshed parquet. See DATA_LICENSE.md for source attribution."
+              --notes "Refreshed parquet. See DATA_LICENSE.md for source attribution."
           gh release upload data-latest data/raw/*.parquet data/links/tender_links.parquet --clobber
 
-      - name: Monthly dated snapshot (history insurance)
-        if: ${{ startsWith(github.event.schedule, '14') }}
+      - name: Dated snapshot release
+        if: ${{ inputs.snapshot }}
         run: |
-          if [ "$(date -u +%d)" = "01" ]; then
-            tag="data-$(date -u +%Y-%m)"
-            gh release view "$tag" >/dev/null 2>&1 || \
-              gh release create "$tag" --title "Tender data snapshot $tag" \
-                --notes "Monthly snapshot of the rolling data release." \
-                data/raw/*.parquet data/links/tender_links.parquet
-          fi
+          tag="data-$(date -u +%Y-%m-%d)"
+          gh release view "$tag" >/dev/null 2>&1 || \
+            gh release create "$tag" --title "Tender data snapshot $tag" \
+              --notes "Snapshot of the rolling data release." \
+              data/raw/*.parquet data/links/tender_links.parquet
 
   agent-evals:
     runs-on: ubuntu-latest
+    if: ${{ inputs.run_evals }}
     steps:
       - uses: actions/checkout@v4
 
@@ -89,7 +103,6 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          # Fork PRs and unconfigured repos have no secret: skip, don't fail.
           if [ -z "$GEMINI_API_KEY" ]; then
             echo "GEMINI_API_KEY not available — skipping LLM evals"
             exit 0
@@ -103,15 +116,3 @@ jobs:
           name: eval-report
           path: evals/report.json
           if-no-files-found: ignore
-
-  keepalive:
-    runs-on: ubuntu-latest
-    permissions:
-      actions: write
-    steps:
-      - uses: actions/checkout@v4
-      # Public-repo schedules pause after 60 days without activity; this
-      # re-enables the workflow through the API — no bot commits in history.
-      - uses: gautamkrishnar/keepalive-workflow@v2
-        with:
-          use_api: true

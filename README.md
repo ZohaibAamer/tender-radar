@@ -112,7 +112,7 @@ decisions: [docs/adr/](docs/adr/).
 | Semantic layer | Hand-rolled YAML + compiler | Governance legible in one file ([ADR-0003](docs/adr/0003-hand-rolled-semantic-layer.md)) |
 | Agent interface | MCP Python SDK (stdio) | Works with Claude Desktop, Inspector, any MCP client |
 | LLM | Gemini Flash via `google-genai` | Free tier; swappable behind a 3-method protocol |
-| CI/CD | GitHub Actions | Tier-1 checks per push; nightly ingest + LLM evals |
+| CI/CD | GitHub Actions | Tier-1 checks per push; on-demand data refresh + LLM evals |
 | Data persistence | GitHub Release assets | No credentials, one-command download ([ADR-0004](docs/adr/0004-data-on-release-assets.md)) |
 | Lint/test | ruff, pytest | 42 deterministic tests incl. the eval scorer itself |
 
@@ -138,7 +138,7 @@ tender-radar/
 ├── fixtures/                # frozen 511-notice eval fixture (script-built)
 ├── scripts/                 # fixture builder, matcher evaluation, schema gen
 ├── tests/                   # 42 deterministic tests (tier 1)
-├── .github/workflows/       # ci.yml (every push) + nightly.yml (data + LLM evals)
+├── .github/workflows/       # ci.yml (every push) + data-refresh.yml (on demand)
 ├── ARCHITECTURE.md          # diagrams and component walkthrough
 ├── docs/adr/                # six architecture decision records
 └── DATA_LICENSE.md          # OGL v3 / EU reuse attribution
@@ -170,8 +170,8 @@ DBT_PROFILES_DIR=dbt uv run dbt build --project-dir dbt
 uv run python -m tender_radar.dedupe
 ```
 
-(Or skip ingestion: `gh release download data-latest --dir data/raw` fetches
-the nightly-refreshed dataset.)
+(If a `data-latest` release has been published, you can skip ingestion:
+`gh release download data-latest --dir data/raw`.)
 
 ### 3. Use it from an MCP client
 
@@ -227,12 +227,14 @@ uv run python evals/harness.py --category injection
 
 ## Data refresh and storage
 
-A nightly GitHub Action ingests the last 7 days from all three sources,
-rebuilds the warehouse, runs `dbt source freshness` as the pipeline health
-check, recomputes dedup links, and uploads Parquet to the rolling
-[`data-latest` release](../../releases) — with dated monthly snapshots as
-history insurance. Schedules are kept alive via the GitHub API (no bot
-commits polluting history).
+The **Data refresh & evals** workflow (Actions tab, run on demand) ingests
+the last 7 days from all three sources, rebuilds the warehouse, runs
+`dbt source freshness` as the pipeline health check, recomputes dedup links,
+and uploads Parquet to the rolling [`data-latest` release](../../releases),
+optionally cutting a dated snapshot. **Nothing runs unattended by design** —
+this is a reference implementation, not an operated service. To run it
+nightly on your own fork, add the `cron` trigger shown at the top of
+[data-refresh.yml](.github/workflows/data-refresh.yml).
 
 ## Licensing
 
