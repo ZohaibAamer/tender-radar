@@ -1,0 +1,67 @@
+version: 2
+
+models:
+  - name: fct_tenders
+    description: >
+      One row per procurement; the only relation the semantic layer may query.
+      The model contract makes any schema drift a build failure, because the
+      semantic layer and MCP tools compile SQL against these exact columns.
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: tender_ref
+        data_type: varchar
+        constraints: [{type: not_null}]
+        tests: [unique]
+      - name: source
+        data_type: varchar
+        constraints: [{type: not_null}]
+      - name: ocid
+        data_type: varchar
+      - name: latest_notice_id
+        data_type: varchar
+        constraints: [{type: not_null}]
+      - name: title
+        data_type: varchar
+        constraints: [{type: not_null}]
+      - name: description
+        data_type: varchar
+      - name: buyer_name
+        data_type: varchar
+      - name: country
+        data_type: varchar
+      - name: cpv_codes
+        data_type: varchar[]
+      - name: main_cpv
+        data_type: varchar
+      - name: cpv_division
+        data_type: varchar
+      - name: cpv_division_label
+        data_type: varchar
+      - name: value_amount
+        data_type: double
+      - name: value_currency
+        data_type: varchar
+      - name: value_type
+        data_type: varchar
+        tests:
+          - accepted_values:
+              values: [estimated, awarded, unknown]
+      - name: status
+        data_type: varchar
+      - name: latest_notice_type
+        data_type: varchar
+      - name: notice_count
+        data_type: bigint
+      - name: first_published_date
+        data_type: date
+      - name: last_published_date
+        data_type: date
+      - name: deadline_date
+        data_type: date
+      - name: has_award
+        data_type: boolean
+      - name: url
+        data_type: varchar
+        constraints: [{type: not_null}]
