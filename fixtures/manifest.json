@@ -1,0 +1,14 @@
+{
+  "built_at": "2026-11-04T00:04:55+05:00",
+  "pinned_today": "2026-11-03",
+  "per_source_target": 170,
+  "deadline_window_days": 45,
+  "synthetic_rows": [
+    "SYNTHETIC-INJECTION-001"
+  ],
+  "sources": {
+    "fts": 171,
+    "contracts_finder": 170,
+    "ted": 170
+  }
+}
