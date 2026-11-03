@@ -12,14 +12,14 @@ from __future__ import annotations
 
 from typing import Any
 
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
 
 from tender_radar.profiles import list_profiles
 from tender_radar.semantic import GovernanceError, layer_text
 
 from . import tools
 
-mcp = FastMCP(
+mcp = MCPServer(
     "tender-radar",
     instructions=(
         "Unified UK (Find a Tender, Contracts Finder) and EU (TED) public tender "
