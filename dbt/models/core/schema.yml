@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: notices
+    description: All notices from all sources in the unified schema.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [source, notice_id]
+  - name: tenders
+    description: One row per procurement (lifecycle dedup keyed on tender_ref).
+    columns:
+      - name: tender_ref
+        tests: [not_null, unique]
+      - name: source
+        tests:
+          - accepted_values:
+              values: [fts, contracts_finder, ted]
+  - name: cpv_hierarchy
+    description: Prefix-derived CPV hierarchy for every observed code.
+    columns:
+      - name: cpv_code
+        tests: [not_null, unique]
+      - name: division
+        tests:
+          - relationships:
+              to: ref('cpv_divisions')
+              field: division
+              config:
+                # Some sources publish retired or draft CPV codes whose
+                # division is not in the 2008 table; surface, don't fail.
+                severity: warn
