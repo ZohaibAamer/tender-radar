@@ -84,6 +84,13 @@ def _notice_type(raw: str) -> NoticeType:
     return "tender"
 
 
+def _first_scalar(value: Any) -> Any:
+    """Some TED fields arrive as single-element lists; unwrap defensively."""
+    if isinstance(value, list):
+        return value[0] if value else None
+    return value
+
+
 def _dedupe(codes: list[str] | None) -> list[str]:
     seen: list[str] = []
     for code in codes or []:
@@ -113,7 +120,7 @@ def map_notice(notice: dict[str, Any]) -> UnifiedNotice | None:
     cpv_codes = _dedupe(notice.get("classification-cpv"))
     raw_type = str(notice.get("notice-type") or "")
     notice_type = _notice_type(raw_type)
-    amount = notice.get("estimated-value-glo")
+    amount = _first_scalar(notice.get("estimated-value-glo"))
     countries = notice.get("buyer-country") or []
     country = _ISO3_TO_ISO2.get(str(countries[0]).upper(), "") if countries else ""
 
@@ -129,7 +136,7 @@ def map_notice(notice: dict[str, Any]) -> UnifiedNotice | None:
         cpv_codes=cpv_codes,
         main_cpv=cpv_codes[0] if cpv_codes else None,
         value_amount=float(amount) if amount is not None else None,
-        value_currency=notice.get("estimated-value-cur-glo"),
+        value_currency=_first_scalar(notice.get("estimated-value-cur-glo")),
         value_type="estimated" if amount is not None else "unknown",
         status={"planning": "planned", "tender": "active", "award": "complete"}[notice_type],
         notice_type=notice_type,
