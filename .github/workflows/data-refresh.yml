@@ -31,6 +31,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
+      # The dbt profile's default resolves relative to the working directory;
+      # pin it so every step agrees where the warehouse lives.
+      TENDER_RADAR_DATA_DIR: ${{ github.workspace }}/data
     steps:
       - uses: actions/checkout@v4
 
