@@ -1,0 +1,23 @@
+# The flagship demo profile: a 50-person UK data consultancy.
+# Validated against profiles/profile.schema.json (generated from
+# tender_radar.profiles.CompanyProfile — run scripts/generate_profile_schema.py).
+name: example-uk-data-consultancy
+description: 50-person UK consultancy doing data engineering, analytics and research.
+countries: [GB]
+cpv_divisions:
+  - "72"  # IT services: consulting, software development, Internet and support
+  - "73"  # Research and development services
+  - "79"  # Business services (incl. consulting)
+keywords:
+  - data
+  - analytics
+  - research
+  - software
+  - dashboard
+  - evaluation
+  - "machine learning"
+  - digital
+employees: 50
+min_value: 25000
+max_value: 2000000
+currency: GBP

@@ -19,6 +19,8 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = Path(os.environ.get("TENDER_RADAR_DATA_DIR", REPO_ROOT / "data"))
 RAW_DIR = DATA_DIR / "raw"
 WAREHOUSE_PATH = DATA_DIR / "warehouse.duckdb"
+LINKS_PATH = DATA_DIR / "links" / "tender_links.parquet"
+PROFILES_DIR = Path(os.environ.get("TENDER_RADAR_PROFILES_DIR", REPO_ROOT / "profiles"))
 
 SOURCES = ("fts", "contracts_finder", "ted")
 

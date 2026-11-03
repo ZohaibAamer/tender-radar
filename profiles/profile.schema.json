@@ -1,0 +1,94 @@
+{
+  "description": "What a bidding company looks like, for matching against tenders.",
+  "properties": {
+    "name": {
+      "description": "Profile identifier, matches the file name.",
+      "title": "Name",
+      "type": "string"
+    },
+    "description": {
+      "default": "",
+      "description": "One line on who this company is.",
+      "title": "Description",
+      "type": "string"
+    },
+    "countries": {
+      "description": "ISO 3166-1 alpha-2 buyer countries the company can serve.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Countries",
+      "type": "array"
+    },
+    "cpv_divisions": {
+      "description": "2-digit CPV divisions of interest, e.g. '72' for IT services.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Cpv Divisions",
+      "type": "array"
+    },
+    "keywords": {
+      "description": "Case-insensitive terms boosting a tender's relevance.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Keywords",
+      "type": "array"
+    },
+    "employees": {
+      "anyOf": [
+        {
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Headcount, for context.",
+      "title": "Employees"
+    },
+    "min_value": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Ignore tenders disclosed below this value.",
+      "title": "Min Value"
+    },
+    "max_value": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Ignore tenders disclosed above this value.",
+      "title": "Max Value"
+    },
+    "currency": {
+      "default": "GBP",
+      "description": "Currency of min/max value bounds.",
+      "title": "Currency",
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "countries",
+    "cpv_divisions"
+  ],
+  "title": "Tender Radar company profile",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
