@@ -160,6 +160,31 @@ or read a [real transcript of exactly that](docs/demo.md).
 The hosted copy serves a bundled snapshot of the warehouse (published
 notices from all three sources); run it yourself for fresher data.
 
+## Security, privacy & scale
+
+The hosted connector is public and unauthenticated by design, so the
+deployment is built to make that safe and free:
+
+- **No SQL surface.** There is deliberately no tool that accepts SQL. Every
+  filter is parameterized server-side, and every database connection is
+  opened read-only — even a bug cannot write.
+- **No secrets.** The server holds no API keys. The LLM runs on the caller's
+  side (their own Claude/ChatGPT account); the server only executes typed
+  tool calls against a local file.
+- **Nothing stored.** No accounts, no query logs, no analytics. Requests are
+  processed in memory against a read-only snapshot and forgotten; platform
+  logs are ephemeral. The only data the server has is public procurement
+  data.
+- **Rate limited.** Each client IP gets 100 requests/minute per instance
+  (HTTP 429 beyond that, verified end-to-end), on top of the platform's
+  built-in DDoS mitigation — one looping client can't exhaust the free-tier
+  quota for everyone else.
+- **Concurrent users are free.** The warehouse ships inside the deployment
+  as a read-only DuckDB file, so parallel reads don't contend. Measured with
+  `scripts/load_test.py` against production (10 parallel clients × 3
+  rounds): **30/30 succeeded, p50 0.52 s, p95 0.99 s**; the only slow call
+  (5.4 s) was a cold start.
+
 ## How to run it
 
 Prerequisites: [uv](https://docs.astral.sh/uv/) (manages Python itself).

@@ -45,10 +45,11 @@ def ensure_warehouse() -> None:
 def create_app():
     from mcp.server.transport_security import TransportSecuritySettings
 
+    from .ratelimit import RateLimitMiddleware
     from .server import mcp
 
     ensure_warehouse()
-    return mcp.streamable_http_app(
+    app = mcp.streamable_http_app(
         streamable_http_path="/api/index",
         # Serverless instances share nothing: every request must stand alone.
         stateless_http=True,
@@ -57,6 +58,9 @@ def create_app():
         # protection is meaningless behind it and only causes 421s.
         transport_security=TransportSecuritySettings(enable_dns_rebinding_protection=False),
     )
+    # Public, unauthenticated endpoint: cap per-client request rate so one
+    # looping client cannot exhaust the free-tier quota for everyone else.
+    return RateLimitMiddleware(app)
 
 
 app = create_app()
