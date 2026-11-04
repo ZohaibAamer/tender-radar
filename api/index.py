@@ -1,4 +1,4 @@
-"""Vercel entrypoint: serves the MCP server over Streamable HTTP at /api/mcp (also aliased as /mcp)."""
+"""Vercel entrypoint: the MCP server over HTTP at /api/index, aliased as /mcp."""
 
 import sys
 from pathlib import Path

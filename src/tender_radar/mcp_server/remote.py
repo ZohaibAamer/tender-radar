@@ -18,9 +18,12 @@ import urllib.request
 # query connection is read-only). Fall back to /tmp + release download only
 # when nothing was bundled. Must run before tender_radar.config is imported.
 _BUNDLED = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "warehouse.duckdb")
-if os.environ.get("VERCEL") and not os.environ.get("TENDER_RADAR_DATA_DIR"):
-    if not os.path.exists(_BUNDLED):
-        os.environ["TENDER_RADAR_DATA_DIR"] = "/tmp/tender-radar-data"
+if (
+    os.environ.get("VERCEL")
+    and not os.environ.get("TENDER_RADAR_DATA_DIR")
+    and not os.path.exists(_BUNDLED)
+):
+    os.environ["TENDER_RADAR_DATA_DIR"] = "/tmp/tender-radar-data"
 
 from tender_radar import config  # noqa: E402
 
