@@ -1,7 +1,7 @@
 """Tool implementations behind the MCP server, as plain testable functions.
 
 Governance lives HERE, in the server layer — not in any agent loop. There is
-no tool that accepts SQL, so no client (Claude Desktop, the CLI agent, MCP
+no tool that accepts SQL, so no client (desktop AI apps, the CLI agent, MCP
 Inspector) can bypass the semantic layer, however it is driven. Search
 filters are parameterized; aggregates go through the semantic compiler.
 """

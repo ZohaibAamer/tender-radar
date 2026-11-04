@@ -7,9 +7,9 @@ Status: accepted
 The project's central claim is that the agent runs on *governed* data: it may
 use declared metrics and parameterized search, never free SQL. That rule has
 to live somewhere. The obvious place — the agent loop — is the wrong one: an
-agent-side rule binds only our own CLI loop. Anyone connecting Claude
-Desktop, MCP Inspector, or any other client to the same server would bypass
-it entirely.
+agent-side rule binds only our own CLI loop. Anyone connecting any other
+MCP client — a desktop AI app, MCP Inspector — to the same server would
+bypass it entirely.
 
 ## Decision
 

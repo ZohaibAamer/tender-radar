@@ -6,8 +6,8 @@
 to AI agents through a governed MCP server, proven by an eval suite.**
 
 Ask it *"Which open tenders fit a 50-person UK data consultancy?"* and it
-answers with ranked matches and cited source links — through Claude Desktop,
-MCP Inspector, or the bundled CLI agent.
+answers with ranked matches and cited source links — through any MCP-capable
+AI client, MCP Inspector, or the bundled CLI agent.
 
 ---
 
@@ -67,7 +67,7 @@ can only query it through governed, tested paths.**
     compiler)             NO free-SQL tool       measured P/R
                                  │
                                  ▼
-               any MCP client: Claude Desktop,
+               any MCP client: desktop AI apps,
                MCP Inspector, or the CLI agent
                    (Gemini Flash, swappable)
                                  │
@@ -110,7 +110,7 @@ decisions: [docs/adr/](docs/adr/).
 | Storage | Parquet + DuckDB | Zero-infra analytical warehouse |
 | Transform | dbt (`dbt-duckdb`) | Layered models, tests, contracts, source freshness |
 | Semantic layer | Hand-rolled YAML + compiler | Governance legible in one file ([ADR-0003](docs/adr/0003-hand-rolled-semantic-layer.md)) |
-| Agent interface | MCP Python SDK (stdio) | Works with Claude Desktop, Inspector, any MCP client |
+| Agent interface | MCP Python SDK (stdio) | Works with MCP Inspector and any MCP-capable client |
 | LLM | Gemini Flash via `google-genai` | Free tier; swappable behind a 3-method protocol |
 | CI/CD | GitHub Actions | Tier-1 checks per push; on-demand data refresh + LLM evals |
 | Data persistence | GitHub Release assets | No credentials, one-command download ([ADR-0004](docs/adr/0004-data-on-release-assets.md)) |
@@ -182,7 +182,7 @@ Fastest look — the official Inspector UI:
 npx @modelcontextprotocol/inspector uv run tender-radar-mcp
 ```
 
-Claude Desktop / Claude Code (`mcpServers` config):
+Any MCP-capable AI client (standard `mcpServers` config):
 
 ```json
 {

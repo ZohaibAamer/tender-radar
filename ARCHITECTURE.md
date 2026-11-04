@@ -23,7 +23,7 @@
    compiled to SQL by       NO free-SQL tool        (measured P/R)
    semantic/compiler.py            │
                                    ▼
-                  any MCP client: Claude Desktop, MCP
+                  any MCP client: desktop AI apps, MCP
                   Inspector, or the CLI agent loop
                   (src/tender_radar/agent — Gemini Flash)
                                    │
