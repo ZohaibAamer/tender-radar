@@ -1,0 +1,18 @@
+# Deploy only what the serverless function needs: api/, src/, requirements.txt
+# and the prebuilt warehouse. Excluding pyproject/uv.lock forces the builder to
+# install from requirements.txt (and stops the CLI agent "fixing" pins).
+pyproject.toml
+uv.lock
+data/raw
+data/links
+.venv
+dbt/target
+dbt/dbt_packages
+dbt/logs
+evals/.cache
+fixtures
+tests
+.github
+.env
+.env.*
+.vercel

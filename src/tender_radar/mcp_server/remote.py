@@ -14,10 +14,13 @@ from __future__ import annotations
 import os
 import urllib.request
 
-# On serverless, the repo checkout is read-only: data must live in /tmp.
-# Must be set before tender_radar.config is imported.
+# Prefer a warehouse bundled with the deployment (read-only is fine: every
+# query connection is read-only). Fall back to /tmp + release download only
+# when nothing was bundled. Must run before tender_radar.config is imported.
+_BUNDLED = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "warehouse.duckdb")
 if os.environ.get("VERCEL") and not os.environ.get("TENDER_RADAR_DATA_DIR"):
-    os.environ["TENDER_RADAR_DATA_DIR"] = "/tmp/tender-radar-data"
+    if not os.path.exists(_BUNDLED):
+        os.environ["TENDER_RADAR_DATA_DIR"] = "/tmp/tender-radar-data"
 
 from tender_radar import config  # noqa: E402
 

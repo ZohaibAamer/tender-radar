@@ -34,3 +34,4 @@ evals/.cache/
 evals/report.json
 dbt/.user.yml
 PLAN.md
+.vercel
