@@ -1,0 +1,25 @@
+# A mid-size German construction & engineering firm — the EU-side demo
+# profile. Germany is the largest EU country in the dataset, led by CPV 45
+# (construction) and 71 (engineering services). Keywords are bilingual
+# because TED stores German notices in German.
+name: example-de-engineering
+description: 80-person German firm doing construction, renovation and civil engineering works.
+countries: [DE]
+cpv_divisions:
+  - "45"  # Construction work
+  - "71"  # Architectural, construction, engineering and inspection services
+keywords:
+  - construction
+  - engineering
+  - renovation
+  - infrastructure
+  - bau
+  - sanierung
+  - tiefbau
+  - hochbau
+  - ingenieur
+  - planung
+employees: 80
+min_value: 100000
+max_value: 10000000
+currency: EUR
