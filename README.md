@@ -144,6 +144,21 @@ tender-radar/
 └── DATA_LICENSE.md          # OGL v3 / EU reuse attribution
 ```
 
+## Use it right now — no install
+
+The server is hosted as a public MCP connector:
+
+```
+https://tender-radar-lime.vercel.app/mcp
+```
+
+Add it in **Claude → Settings → Connectors → Add custom connector** (works on
+claude.ai and Claude Desktop; ChatGPT's connector settings accept the same
+URL). Then ask: *"Which open tenders fit a 50-person UK data consultancy?"*
+
+The hosted copy serves a bundled snapshot of the warehouse (published
+notices from all three sources); run it yourself for fresher data.
+
 ## How to run it
 
 Prerequisites: [uv](https://docs.astral.sh/uv/) (manages Python itself).
