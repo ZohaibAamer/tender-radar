@@ -70,7 +70,9 @@ class GeminiProvider:
         self._model = model
 
     def generate(self, system: str, history: list[Any], tools: list[dict[str, Any]]) -> ModelTurn:
-        from google.genai import types
+        import time
+
+        from google.genai import errors, types
 
         declarations = [
             types.FunctionDeclaration(
@@ -80,15 +82,23 @@ class GeminiProvider:
             )
             for tool in tools
         ]
-        response = self._client.models.generate_content(
-            model=self._model,
-            contents=history,
-            config=types.GenerateContentConfig(
-                system_instruction=system,
-                tools=[types.Tool(function_declarations=declarations)],
-                temperature=0.0,
-            ),
+        config = types.GenerateContentConfig(
+            system_instruction=system,
+            tools=[types.Tool(function_declarations=declarations)],
+            temperature=0.0,
         )
+        # The free tier rate-limits (429) and the shared models shed load
+        # (503); both heal with patience, which evals need more than speed.
+        for attempt in range(6):
+            try:
+                response = self._client.models.generate_content(
+                    model=self._model, contents=history, config=config
+                )
+                break
+            except errors.APIError as exc:
+                if exc.code not in (429, 500, 503) or attempt == 5:
+                    raise
+                time.sleep(2**attempt * 2)
         candidate = response.candidates[0]
         calls = [
             ToolCall(name=part.function_call.name, arguments=dict(part.function_call.args or {}))
