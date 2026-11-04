@@ -63,7 +63,7 @@ def _clean_schema(schema: dict[str, Any]) -> dict[str, Any]:
 class GeminiProvider:
     """Gemini Flash on the free tier, via google-genai."""
 
-    def __init__(self, model: str = "gemini-flash-latest", api_key: str | None = None):
+    def __init__(self, model: str = "gemini-3.8-flash", api_key: str | None = None):
         from google import genai
 
         self._client = genai.Client(api_key=api_key or os.environ.get("GEMINI_API_KEY"))

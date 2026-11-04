@@ -19,7 +19,7 @@ from .provider import GeminiProvider
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="tender_radar.agent")
     parser.add_argument("question")
-    parser.add_argument("--model", default="gemini-flash-latest")
+    parser.add_argument("--model", default="gemini-3.8-flash")
     args = parser.parse_args(argv)
 
     result = asyncio.run(run_agent(args.question, GeminiProvider(model=args.model)))

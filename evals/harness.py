@@ -1,7 +1,7 @@
 """Run the agent eval suite against the frozen fixture and score on evidence.
 
     uv run python evals/harness.py [--category metrics] [--only metric-001]
-                                   [--no-cache] [--model gemini-flash-latest]
+                                   [--no-cache] [--model gemini-3.8-flash]
 
 Requires GEMINI_API_KEY and a built fixture warehouse:
 
@@ -167,7 +167,7 @@ async def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--category")
     parser.add_argument("--only")
-    parser.add_argument("--model", default="gemini-flash-latest")
+    parser.add_argument("--model", default="gemini-3.8-flash")
     parser.add_argument("--no-cache", action="store_true")
     parser.add_argument("--report", type=Path, default=Path(__file__).parent / "report.json")
     args = parser.parse_args()
