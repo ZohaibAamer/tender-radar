@@ -46,7 +46,7 @@ def create_app():
 
     ensure_warehouse()
     return mcp.streamable_http_app(
-        streamable_http_path="/api/mcp",
+        streamable_http_path="/api/index",
         # Serverless instances share nothing: every request must stand alone.
         stateless_http=True,
         json_response=True,
